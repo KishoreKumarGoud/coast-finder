@@ -1,21 +1,21 @@
 const navigation = {
-  courses: [
-    { name: 'Data science', href: '#' },
-    { name: 'Artificial Intelligence', href: '#' },
-    { name: 'Machine Learning', href: '#' },
-    { name: 'Web Development', href: '#' },
+  services: [
+    { name: 'Interior Design', href: '#' },
+    { name: 'Space Planning', href: '#' },
+    { name: 'Renovation', href: '#' },
+    { name: 'Consultation', href: '#' },
   ],
-  labs: [
-    { name: 'Assessments', href: '#' },
-    { name: 'Quiz', href: '#' },
-    { name: 'Learning Center', href: '#' },
-    { name: 'Ebooks', href: '#' },
+  portfolio: [
+    { name: 'Living Rooms', href: '#' },
+    { name: 'Bedrooms', href: '#' },
+    { name: 'Kitchens', href: '#' }, 
+    { name: 'Commercial', href: '#' },
   ],
   company: [
     { name: 'About', href: '#' },
-    { name: 'Blog', href: '#' },
-    { name: 'Jobs', href: '#' },
-    { name: 'Team', href: '#' },
+    { name: 'Projects', href: '#' },
+    { name: 'Contact', href: '#' },
+    { name: 'Careers', href: '#' },
   ],
   legal: [
     { name: 'Privacy', href: '#' },
@@ -36,28 +36,20 @@ const navigation = {
       ),
     },
     {
-      name: 'GitHub',
+      name: 'Pinterest',
       href: '#',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
-          <path
-            fillRule="evenodd"
-            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-            clipRule="evenodd"
-          />
+          <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z" />
         </svg>
       ),
     },
     {
-      name: 'YouTube',
+      name: 'Houzz',
       href: '#',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
-          <path
-            fillRule="evenodd"
-            d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
-            clipRule="evenodd"
-          />
+          <path d="M12.6 18.06c-2.94 1.87-5.67-.06-5.67-3.06V9.84L2.67 12.9V21h6.93v-2.94h-1.73zm0-10.15L8.4 9.84v5.16c0 1.87 1.67 2.94 3.47 1.87l4.2-2.81V8.91l-3.47 2.34V7.91zm4.2-2.81V3h-6.93v2.94h1.73c2.94-1.87 5.67.06 5.67 3.06v5.16l4.27-3.06V3h-4.74z"/>
         </svg>
       ),
     },
@@ -74,14 +66,14 @@ export default function Footer() {
         <div className="xl:grid xl:grid-cols-3 xl:gap-12">
           <div className="space-y-8">
             <img
-              alt="Company name"
+              alt="Elegant Interiors"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
               className="h-7"
             />
             <div className="xl:mt-0">
-              <h3 className="text-sm font-semibold leading-6 text-gray-300">Subscribe to our newsletter</h3>
+              <h3 className="text-sm font-semibold leading-6 text-gray-300">Get Design Inspiration</h3>
               <p className="mt-2 text-sm leading-6 text-gray-500">
-                The latest news, articles, and resources, sent to your inbox weekly.
+                Subscribe for the latest interior design trends, tips and project showcases.
               </p>
               <form className="mt-6 sm:flex sm:max-w-md">
                 <label htmlFor="email-address" className="sr-only">
@@ -118,9 +110,9 @@ export default function Footer() {
           <div className="mt-16 ml-10 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-white">Courses</h3>
+                <h3 className="text-sm font-semibold leading-6 text-white">Services</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.courses.map((item) => (
+                  {navigation.services.map((item) => (
                     <li key={item.name}>
                       <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
                         {item.name}
@@ -130,9 +122,9 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-white">Labs</h3>
+                <h3 className="text-sm font-semibold leading-6 text-white">Portfolio</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {navigation.labs.map((item) => (
+                  {navigation.portfolio.map((item) => (
                     <li key={item.name}>
                       <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
                         {item.name}
@@ -171,7 +163,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-          <p className="text-xs leading-5 text-gray-400">&copy; 2020 Your Company, Inc. All rights reserved.</p>
+          <p className="text-xs leading-5 text-gray-400">&copy; 2023 Elegant Interiors. All rights reserved.</p>
         </div>
       </div>
     </footer>

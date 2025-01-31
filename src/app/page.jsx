@@ -1,12 +1,10 @@
-import Blog from '@/components/Blog'
-import { Faqs } from '@/components/Faqs'
+import ContactForm from '@/components/contactForm'
 import Footer from '@/components/Footer'
+import { Gallery } from '@/components/gallery'
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
 import { PrimaryFeatures } from '@/components/PrimaryFeatures'
-import Stats from '@/components/Stats'
 import Team from '@/components/Team'
-import Testimonials from '@/components/Testimonials'
 
 export default function Home() {
   const navItems = [
@@ -15,12 +13,12 @@ export default function Home() {
       "label": "Testimonials"
     },
     {
-      "link": "#blog",
-      "label": "Blog"
-    },
-    {
       "link": "/about",
       "label": "About"
+    },
+    {
+      "link": "/contact",
+      "label": "Contact us"
     }
   ]
   return (
@@ -29,10 +27,8 @@ export default function Home() {
       <main>
         <Hero />
         <PrimaryFeatures />
-        <Stats />
-        <Testimonials />
-        <Blog />
-        <Faqs />
+        <Gallery />
+        <ContactForm />
       </main>
       <Footer />
     </>

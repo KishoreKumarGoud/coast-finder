@@ -5,11 +5,11 @@ import '@/styles/tailwind.css'
 
 export const metadata = {
   title: {
-    template: '%s - Data Marathon',
-    default: 'Data Marathon - Build Your Future in Data Science, AI & ML',
+    template: '%s - Hashtag Designs',
+    default: 'Hashtag Designs - Transform Your Space with Elegant Interior Design',
   },
   description:
-    'Gain essential real-world skills through our comprehensive courses that prepare you for a dynamic tech landscape.',
+    'Create stunning interiors that reflect your personality with our expert designers and premium quality materials. We bring your vision to life through innovative architectural and interior design solutions.',
 }
 
 const inter = Inter({

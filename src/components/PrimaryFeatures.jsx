@@ -7,33 +7,25 @@ import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import backgroundImage from '@/images/background-features.jpg'
-import screenshotExpenses from '@/images/screenshots/expenses.png'
-import screenshotPayroll from '@/images/screenshots/payroll.png'
-import ds from '@/images/screenshots/ds.jpg'
-import ds_discuss from '@/images/screenshots/ds_discuss.jpg'
-import ML from '@/images/screenshots/ML.jpg'
-import ai1 from '@/images/screenshots/ai1.jpg'
-import screenshotReporting from '@/images/screenshots/reporting.png'
-import screenshotVatReturns from '@/images/screenshots/vat-returns.png'
 
 const features = [
   {
-    title: 'Data Science',
+    title: 'Modern Living Rooms',
     description:
-      "Unlock the power of data with our comprehensive Data Science course. Learn essential techniques in data analysis, visualization, and statistical modeling to make informed decisions.",
-    image: ds_discuss,
+      "Transform your living space into a contemporary haven with our elegant designs. We blend comfort with style using premium materials and innovative layouts.",
+    image: "https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80",
   },
   {
-    title: 'Artificial Intelligence',
+    title: 'Luxury Kitchens',
     description:
-      "Dive into the world of Machine Learning with hands-on projects and real-world applications. Master algorithms and techniques to build predictive models that drive innovation.",
-    image: ai1,
+      "Create your dream kitchen that combines functionality with sophistication. Our designs feature high-end appliances, custom cabinetry, and stunning finishes.",
+    image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1568&q=80",
   },
   {
-    title: 'Machine Learning',
+    title: 'Serene Bedrooms',
     description:
-      "Explore the fundamentals of Artificial Intelligence and its transformative impact on technology. Gain insights into AI algorithms, neural networks, and their applications across various industries.",
-    image: ML,
+      "Design your perfect sanctuary with our luxurious bedroom concepts. We focus on creating peaceful retreats with attention to lighting, textures, and comfort.",
+    image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
   }
 ]
 
@@ -57,12 +49,12 @@ export function PrimaryFeatures() {
 
   return (
     <section
-      id="courses"
-      aria-label="Features for running your books"
-      className="relative overflow-hidden bg-blue-600 pb-28 pt-20 sm:py-32"
+      id="projects"
+      aria-label="Our Recent Projects"
+      className="relative overflow-hidden bg-gray-900 pb-28 pt-20 sm:py-32"
     >
       <Image
-        className="absolute left-1/2 top-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
+        className="absolute left-1/2 top-1/2 max-w-none translate-x-[-44%] translate-y-[-42%] opacity-20"
         src={backgroundImage}
         alt=""
         width={2245}
@@ -72,10 +64,10 @@ export function PrimaryFeatures() {
       <Container className="relative">
         <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
-            What we offer
+            Our Recent Projects
           </h2>
-          <p className="mt-6 text-lg tracking-tight text-blue-100">
-          Our offerings include hands-on projects, expert guidance, and flexible learning paths to help you master the latest technologies and advance your career.
+          <p className="mt-6 text-lg tracking-tight text-gray-300">
+            Explore our portfolio of stunning interior transformations. Each project showcases our commitment to elegant design and exceptional craftsmanship.
           </p>
         </div>
         <TabGroup
@@ -101,8 +93,8 @@ export function PrimaryFeatures() {
                           className={clsx(
                             'font-display text-lg ui-not-focus-visible:outline-none',
                             selectedIndex === featureIndex
-                              ? 'text-blue-600 lg:text-white'
-                              : 'text-blue-100 hover:text-white lg:text-white',
+                              ? 'text-gray-900 lg:text-white'
+                              : 'text-gray-300 hover:text-white lg:text-white',
                           )}
                         >
                           <span className="absolute inset-0 rounded-full lg:rounded-l-xl lg:rounded-r-none" />
@@ -114,7 +106,7 @@ export function PrimaryFeatures() {
                           'mt-2 hidden text-sm lg:block',
                           selectedIndex === featureIndex
                             ? 'text-white'
-                            : 'text-blue-100 group-hover:text-white',
+                            : 'text-gray-300 group-hover:text-white',
                         )}
                       >
                         {feature.description}
@@ -132,13 +124,11 @@ export function PrimaryFeatures() {
                         {feature.description}
                       </p>
                     </div>
-                    <div className="mt-10 w-[45rem] overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-blue-900/20 sm:w-auto lg:mt-0 lg:w-[67.8125rem]">
-                      <Image
-                        className="w-full"
+                    <div className="mt-10 w-[45rem] overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-black/20 sm:w-auto lg:mt-0 lg:w-[67.8125rem]">
+                      <img
+                        className="w-full h-[400px] object-cover"
                         src={feature.image}
-                        alt=""
-                        priority
-                        sizes="(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem"
+                        alt={feature.title}
                       />
                     </div>
                   </TabPanel>
