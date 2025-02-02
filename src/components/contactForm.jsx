@@ -13,7 +13,7 @@ export default function ContactForm() {
   
   const images = [
     "https://images.unsplash.com/photo-1497366811353-6870744d04b2",
-    "https://images.unsplash.com/photo-1497366216548-37526070297c",
+    "https://images.unsplash.com/photo-1497366216548-37526070297c", 
     "https://images.unsplash.com/photo-1497366754035-f200968a6e72"
   ]
 
@@ -38,11 +38,11 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="mt-12">
-      <div className="rounded-2xl border border-slate-200 p-6">
-        <div className="flex gap-4 items-center">
-          <div className="w-[45%]">
-            <h3 className="font-display text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 mb-6 animate-pulse">
+    <div className="mt-8 sm:mt-12 px-4 sm:px-6">
+      <div className="rounded-2xl border border-slate-200 p-4 sm:p-6">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-4">
+          <div className="w-full lg:w-[45%]">
+            <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 mb-4 sm:mb-6 animate-pulse">
               Have queries? Connect with us
             </h3>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -112,7 +112,7 @@ export default function ContactForm() {
               <div>
                 <button
                   type="submit"
-                  className="rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 px-5 py-2 text-sm font-semibold text-white shadow-lg hover:from-indigo-500 hover:to-purple-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transform transition-all duration-200 hover:scale-105 active:scale-95"
+                  className="w-full sm:w-auto rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 px-5 py-2 text-sm font-semibold text-white shadow-lg hover:from-indigo-500 hover:to-purple-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transform transition-all duration-200 hover:scale-105 active:scale-95"
                 >
                   Send Message
                 </button>
@@ -120,7 +120,7 @@ export default function ContactForm() {
             </form>
           </div>
 
-          <div className="w-[55%] h-[500px] overflow-hidden rounded-xl">
+          <div className="w-full lg:w-[55%] h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden rounded-xl">
             <div className="relative w-full h-full transition-transform duration-1000 ease-in-out">
               <img
                 src={`${images[currentImageIndex]}?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80`}

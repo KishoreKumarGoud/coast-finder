@@ -163,7 +163,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-12 border-t border-white/10 pt-6 sm:mt-16">
-          <p className="text-sm leading-5 text-gray-400">&copy; 2023 Elegant Interiors. All rights reserved.</p>
+          <p className="text-sm leading-5 text-gray-400">&copy; 2025 Elegant Interiors. All rights reserved.</p>
         </div>
       </div>
     </footer>

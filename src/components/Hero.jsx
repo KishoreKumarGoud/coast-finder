@@ -27,7 +27,7 @@ export function Hero() {
   }, [])
 
   return (
-    <div className="relative min-h-[85vh] overflow-hidden">
+    <div className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh] overflow-hidden">
       {backgroundImages.map((image, index) => (
         <div
           key={index}
@@ -45,12 +45,13 @@ export function Hero() {
             fill
             className="object-cover opacity-60"
             priority={index === 0}
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white opacity-90"></div>
         </div>
       ))}
-      <Container className="relative pb-24 pt-24 text-center lg:pt-32 lg:pb-36">
-        <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-tight text-slate-800 sm:text-7xl">
+      <Container className="relative px-4 sm:px-6 pb-12 sm:pb-16 md:pb-20 lg:pb-36 pt-12 sm:pt-16 md:pt-24 lg:pt-32 text-center">
+        <h1 className="mx-auto max-w-4xl font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-slate-800">
           Transform Your Space with{' '}
           <span className="relative whitespace-nowrap text-indigo-600">
             <svg
@@ -64,15 +65,15 @@ export function Hero() {
             <span className="relative">Elegant Design</span>
           </span>{' '}
         </h1>
-        <p className="mx-auto mt-7 max-w-2xl text-xl tracking-tight text-slate-900 leading-relaxed font-semibold font-['Open_Sans'] antialiased">
+        <p className="mx-auto mt-4 sm:mt-5 md:mt-7 max-w-2xl text-base sm:text-lg md:text-xl tracking-tight text-slate-900 leading-relaxed font-semibold font-['Open_Sans'] antialiased px-4">
           Create stunning interiors that reflect your personality with our expert designers and premium quality materials.
         </p>
-        <div className="mt-10 flex justify-center gap-x-6">
-          <Button href="/register">Contact Us</Button>
+        <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row justify-center gap-4 sm:gap-x-6 px-4">
+          <Button href="/contact" className="w-full sm:w-auto">Contact Us</Button>
           <Button
-            href="https://www.youtube.com/watch?v=COuz7r4M-Wg&list=PL-nc7zI7zjsZRxiObM_EjLtrhUmvrxkYT"
+            href="#gallery"
             variant="outline"
-            className="border-purple-600 bg-purple-600 text-white font-semibold hover:scale-105 transition-all duration-300 hover:bg-purple-700 hover:border-purple-700"
+            className="w-full sm:w-auto border-purple-600 bg-purple-600 text-white font-semibold hover:scale-105 transition-all duration-300 hover:bg-purple-700 hover:border-purple-700"
           >
             View Portfolio
           </Button>

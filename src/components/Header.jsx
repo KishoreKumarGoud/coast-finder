@@ -6,6 +6,10 @@ import {
   PopoverButton,
   PopoverBackdrop,
   PopoverPanel,
+  Menu,
+  MenuButton,
+  MenuItems,
+  MenuItem,
 } from '@headlessui/react'
 import clsx from 'clsx'
 
@@ -14,6 +18,7 @@ import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
 import CoursesMenu from './CoursesMenu'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 function MobileNavLink({ href, children }) {
   return (
@@ -67,6 +72,43 @@ function MobileNavigation({navItems}) {
         transition
         className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-gray-50 p-4 text-lg tracking-tight text-gray-800 shadow-xl ring-1 ring-slate-900/5 data-[closed]:scale-95 data-[closed]:opacity-0 data-[enter]:duration-150 data-[leave]:duration-100 data-[enter]:ease-out data-[leave]:ease-in"
       >
+        <div className="relative">
+          <Menu as="div" className="w-full">
+            <MenuButton className="block w-full p-2 text-left text-gray-800">
+              Our Works
+              <ChevronDownIcon className="inline-block ml-2 h-5 w-5 text-gray-400" />
+            </MenuButton>
+            <MenuItems className="absolute left-0 right-0 mt-1 w-full origin-top-right rounded-xl bg-white shadow-lg">
+              <div className="py-2">
+                <MenuItem>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                    Interior Design
+                  </a>
+                </MenuItem>
+                <MenuItem>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                    Architecture
+                  </a>
+                </MenuItem>
+                <MenuItem>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                    Urban Planning
+                  </a>
+                </MenuItem>
+                <MenuItem>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                    Commercial Spaces
+                  </a>
+                </MenuItem>
+                <MenuItem>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                    Residential Spaces
+                  </a>
+                </MenuItem>
+              </div>
+            </MenuItems>
+          </Menu>
+        </div>
         {navItems.map((item) => {
           return <NavLink href={item.link} key={item.label}>
             {item.label}</NavLink>
@@ -88,7 +130,7 @@ export function Header({ navItems }) {
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
             <div className="hidden md:flex md:gap-x-6 md:items-center text-gray-800">
-              <CoursesMenu></CoursesMenu>
+              <CoursesMenu />
               {navItems.map((item) => {
                 return <NavLink href={item.link} key={item.label}>
                   {item.label}</NavLink>
