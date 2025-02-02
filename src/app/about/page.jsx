@@ -69,7 +69,7 @@ export default function Example() {
                 </p>
                 <div className="mt-10">
                   <p className="text-lg leading-7 text-gray-700">
-                    We don't just design spaces - we craft experiences that resonate with the human spirit. 
+                    We don&apos;t just design spaces - we craft experiences that resonate with the human spirit. 
                     Our approach combines cutting-edge innovation with timeless principles, ensuring each project 
                     not only meets but exceeds expectations, creating lasting positive impacts on both society 
                     and the environment.
@@ -125,14 +125,14 @@ export default function Example() {
             <div className="mt-6">
               <div className="w-full">
                 <p className="text-2xl leading-8 text-gray-600">
-                  To be the catalyst for transformative design that shapes tomorrow's world, creating spaces 
+                  To be the catalyst for transformative design that shapes tomorrow&apos;s world, creating spaces 
                   that inspire generations and set new standards in sustainable architecture.
                 </p>
                 <div className="mt-8 mb-6">
                   <p className="text-lg leading-7 text-gray-700">
                     As pioneers in architectural innovation, we envision a future where design seamlessly 
                     bridges human needs with environmental consciousness. Our commitment extends beyond 
-                    aesthetics - we're dedicated to creating sustainable, adaptive spaces that evolve with 
+                    aesthetics - we&apos;re dedicated to creating sustainable, adaptive spaces that evolve with 
                     time while maintaining their timeless appeal. Through our work, we aim to inspire 
                     communities, foster connections, and create lasting legacies that contribute to a 
                     more beautiful and sustainable world.

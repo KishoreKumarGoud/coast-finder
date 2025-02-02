@@ -65,11 +65,11 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 pb-6 pt-12 sm:pt-16 lg:px-8 lg:pt-20">
         <div className="xl:grid xl:grid-cols-3 xl:gap-12">
           <div className="space-y-6">
-            <img
+            {/* <img
               alt="Elegant Interiors"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
               className="h-7"
-            />
+            /> */}
             <div className="xl:mt-0">
               <h3 className="text-base font-semibold leading-6 text-gray-300">Get Design Inspiration</h3>
               <p className="mt-2 text-base leading-6 text-gray-500">
