@@ -1,5 +1,7 @@
+// Import Link component from Next.js
 import Link from 'next/link'
 
+// NavLink component that wraps Next.js Link with custom styling
 export function NavLink({ href, children }) {
   return (
     <Link

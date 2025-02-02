@@ -62,20 +62,20 @@ export default function Footer() {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
+      <div className="mx-auto max-w-7xl px-6 pb-6 pt-12 sm:pt-16 lg:px-8 lg:pt-20">
         <div className="xl:grid xl:grid-cols-3 xl:gap-12">
-          <div className="space-y-8">
+          <div className="space-y-6">
             <img
               alt="Elegant Interiors"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
               className="h-7"
             />
             <div className="xl:mt-0">
-              <h3 className="text-sm font-semibold leading-6 text-gray-300">Get Design Inspiration</h3>
-              <p className="mt-2 text-sm leading-6 text-gray-500">
+              <h3 className="text-base font-semibold leading-6 text-gray-300">Get Design Inspiration</h3>
+              <p className="mt-2 text-base leading-6 text-gray-500">
                 Subscribe for the latest interior design trends, tips and project showcases.
               </p>
-              <form className="mt-6 sm:flex sm:max-w-md">
+              <form className="mt-4 sm:flex sm:max-w-md">
                 <label htmlFor="email-address" className="sr-only">
                   Email address
                 </label>
@@ -88,10 +88,10 @@ export default function Footer() {
                   autoComplete="email"
                   className="w-full min-w-0 appearance-none rounded-md border-0 bg-white px-3 py-1.5 text-base text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:w-64 sm:text-sm sm:leading-6 xl:w-full"
                 />
-                <div className="mt-4 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
+                <div className="mt-3 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
                   <button
                     type="submit"
-                    className="flex w-full items-center justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="flex w-full items-center justify-center rounded-md bg-indigo-600 px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
                     Subscribe
                   </button>
@@ -107,26 +107,26 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          <div className="mt-16 ml-10 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+          <div className="mt-12 ml-10 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-white">Services</h3>
-                <ul role="list" className="mt-6 space-y-4">
+                <h3 className="text-base font-semibold leading-6 text-white">Services</h3>
+                <ul role="list" className="mt-4 space-y-3">
                   {navigation.services.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                      <a href={item.href} className="text-base leading-6 text-gray-300 hover:text-white">
                         {item.name}
                       </a>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-white">Portfolio</h3>
-                <ul role="list" className="mt-6 space-y-4">
+              <div className="mt-8 md:mt-0">
+                <h3 className="text-base font-semibold leading-6 text-white">Portfolio</h3>
+                <ul role="list" className="mt-4 space-y-3">
                   {navigation.portfolio.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                      <a href={item.href} className="text-base leading-6 text-gray-300 hover:text-white">
                         {item.name}
                       </a>
                     </li>
@@ -136,23 +136,23 @@ export default function Footer() {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-white">Company</h3>
-                <ul role="list" className="mt-6 space-y-4">
+                <h3 className="text-base font-semibold leading-6 text-white">Company</h3>
+                <ul role="list" className="mt-4 space-y-3">
                   {navigation.company.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                      <a href={item.href} className="text-base leading-6 text-gray-300 hover:text-white">
                         {item.name}
                       </a>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-white">Legal</h3>
-                <ul role="list" className="mt-6 space-y-4">
+              <div className="mt-8 md:mt-0">
+                <h3 className="text-base font-semibold leading-6 text-white">Legal</h3>
+                <ul role="list" className="mt-4 space-y-3">
                   {navigation.legal.map((item) => (
                     <li key={item.name}>
-                      <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                      <a href={item.href} className="text-base leading-6 text-gray-300 hover:text-white">
                         {item.name}
                       </a>
                     </li>
@@ -162,8 +162,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-          <p className="text-xs leading-5 text-gray-400">&copy; 2023 Elegant Interiors. All rights reserved.</p>
+        <div className="mt-12 border-t border-white/10 pt-6 sm:mt-16">
+          <p className="text-sm leading-5 text-gray-400">&copy; 2023 Elegant Interiors. All rights reserved.</p>
         </div>
       </div>
     </footer>

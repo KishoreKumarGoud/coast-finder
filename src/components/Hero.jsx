@@ -1,25 +1,55 @@
 'use client'
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-// Using a high-quality interior design image from Unsplash as the background
-const backgroundImage = 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2400&q=80'
 
+// Array of background images
+const backgroundImages = [
+  'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80',
+  'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80',
+  'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80',
+  'https://images.unsplash.com/photo-1616486701797-0f33f61038ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80'
+]
 
 export function Hero() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
+      )
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
-    <div className="relative">
-      <div className="absolute inset-0">
-        <Image
-          src={backgroundImage}
-          alt="Modern interior design"
-          fill
-          className="object-cover opacity-60" 
-          priority
-        />
-      </div>
-      <Container className="relative pb-16 pt-20 text-center lg:pt-32">
+    <div className="relative min-h-[85vh] overflow-hidden">
+      {backgroundImages.map((image, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-transform duration-1000 ease-in-out ${
+            index === currentImageIndex 
+              ? 'translate-x-0' 
+              : index < currentImageIndex 
+                ? '-translate-x-full' 
+                : 'translate-x-full'
+          }`}
+        >
+          <Image
+            src={image}
+            alt={`Interior design ${index + 1}`}
+            fill
+            className="object-cover opacity-60"
+            priority={index === 0}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white opacity-90"></div>
+        </div>
+      ))}
+      <Container className="relative pb-24 pt-24 text-center lg:pt-32 lg:pb-36">
         <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-tight text-slate-800 sm:text-7xl">
           Transform Your Space with{' '}
           <span className="relative whitespace-nowrap text-indigo-600">
@@ -34,7 +64,7 @@ export function Hero() {
             <span className="relative">Elegant Design</span>
           </span>{' '}
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-900">
+        <p className="mx-auto mt-7 max-w-2xl text-xl tracking-tight text-slate-900 leading-relaxed font-semibold font-['Open_Sans'] antialiased">
           Create stunning interiors that reflect your personality with our expert designers and premium quality materials.
         </p>
         <div className="mt-10 flex justify-center gap-x-6">
@@ -42,6 +72,7 @@ export function Hero() {
           <Button
             href="https://www.youtube.com/watch?v=COuz7r4M-Wg&list=PL-nc7zI7zjsZRxiObM_EjLtrhUmvrxkYT"
             variant="outline"
+            className="border-purple-600 bg-purple-600 text-white font-semibold hover:scale-105 transition-all duration-300 hover:bg-purple-700 hover:border-purple-700"
           >
             View Portfolio
           </Button>

@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -9,9 +9,23 @@ export default function ContactForm() {
     message: ''
   })
 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  
+  const images = [
+    "https://images.unsplash.com/photo-1497366811353-6870744d04b2",
+    "https://images.unsplash.com/photo-1497366216548-37526070297c",
+    "https://images.unsplash.com/photo-1497366754035-f200968a6e72"
+  ]
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [])
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Handle form submission logic here
     console.log(formData)
   }
 
@@ -24,14 +38,14 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="mt-16">
-      <div className="rounded-2xl border border-slate-200 p-8">
-        <div className="flex gap-8">
-          <div className="w-1/2">
-            <h3 className="font-display text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 mb-8">
+    <div className="mt-12">
+      <div className="rounded-2xl border border-slate-200 p-6">
+        <div className="flex gap-4 items-center">
+          <div className="w-[45%]">
+            <h3 className="font-display text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 mb-6 animate-pulse">
               Have queries? Connect with us
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-6 max-w-md">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-slate-700">
                   Name
@@ -42,7 +56,7 @@ export default function ContactForm() {
                   id="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  className="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-1.5 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-all duration-200 hover:border-indigo-400"
                   placeholder="Your name"
                   required
                 />
@@ -58,7 +72,7 @@ export default function ContactForm() {
                   id="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  className="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-1.5 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-all duration-200 hover:border-indigo-400"
                   placeholder="you@example.com"
                   required
                 />
@@ -74,7 +88,7 @@ export default function ContactForm() {
                   id="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  className="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-1.5 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-all duration-200 hover:border-indigo-400"
                   placeholder="Your phone number"
                 />
               </div>
@@ -86,10 +100,10 @@ export default function ContactForm() {
                 <textarea
                   name="message"
                   id="message"
-                  rows={4}
+                  rows={3}
                   value={formData.message}
                   onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  className="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-1.5 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-all duration-200 hover:border-indigo-400"
                   placeholder="Your message"
                   required
                 />
@@ -98,7 +112,7 @@ export default function ContactForm() {
               <div>
                 <button
                   type="submit"
-                  className="rounded-md bg-indigo-600 px-6 py-2 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 px-5 py-2 text-sm font-semibold text-white shadow-lg hover:from-indigo-500 hover:to-purple-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transform transition-all duration-200 hover:scale-105 active:scale-95"
                 >
                   Send Message
                 </button>
@@ -106,12 +120,14 @@ export default function ContactForm() {
             </form>
           </div>
 
-          <div className="w-1/2">
-            <img
-              src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-              alt="Modern architectural interior"
-              className="w-full h-full object-cover rounded-xl"
-            />
+          <div className="w-[55%] h-[500px] overflow-hidden rounded-xl">
+            <div className="relative w-full h-full transition-transform duration-1000 ease-in-out">
+              <img
+                src={`${images[currentImageIndex]}?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80`}
+                alt="Modern architectural interior"
+                className="w-full h-full object-cover transition-opacity duration-500"
+              />
+            </div>
           </div>
         </div>
       </div>

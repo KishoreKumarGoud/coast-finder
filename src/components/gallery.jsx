@@ -40,10 +40,10 @@ export function Gallery() {
     <section id="gallery" className="py-20 bg-gray-50">
       <Container>
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Our Portfolio
+          <h2 className="text-4xl font-bold tracking-tight text-purple-600 sm:text-5xl">
+            Our Recent Projects
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-xl font-semibold text-gray-600">
             Explore our collection of stunning designs and architectural projects
           </p>
         </div>
