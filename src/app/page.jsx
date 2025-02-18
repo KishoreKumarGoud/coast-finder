@@ -4,7 +4,6 @@ import { Gallery } from '@/components/gallery'
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
 import { PrimaryFeatures } from '@/components/PrimaryFeatures'
-import Team from '@/components/Team'
 
 export default function Home() {
   const navItems = [

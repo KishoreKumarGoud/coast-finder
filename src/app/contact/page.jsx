@@ -26,57 +26,65 @@ export default function Contact() {
               Contact Us
             </h2>
             <p className="mt-6 text-2xl tracking-tight text-slate-700 font-semibold">
-              Get in touch with us to transform your space into something extraordinary.
+              Have questions? We'd love to hear from you.
             </p>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2">
-            <div className="rounded-2xl border border-slate-200 p-12 bg-gradient-to-br from-blue-50 via-[#F5F5DC] to-[#D2B48C] shadow-lg transition-all duration-300 hover:shadow-xl text-center animate-[fadeIn_1s_ease-in]">
-              <h3 className="font-display text-3xl font-bold text-slate-900">
-                Location
-              </h3>
-              <p className="mt-4 text-xl text-slate-700">
-              Rama Classic, Shilpi Valley Layout, Madhapur, Hyderabad<br />
-                India
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 p-12 bg-gradient-to-br from-blue-50 via-[#F5F5DC] to-[#D2B48C] shadow-lg transition-all duration-300 hover:shadow-xl text-center animate-[fadeIn_1s_ease-in]">
-              <h3 className="font-display text-3xl font-bold text-slate-900">
-                Contact Details
-              </h3>
-              <div className="mt-4 space-y-4">
-                <p className="text-xl text-slate-700">
-                  <span className="font-semibold text-2xl">Email:</span><br />
-                  info@hashtags.in
-                </p>
-                <p className="text-xl text-slate-700">
-                  <span className="font-semibold text-2xl">Phone:</span><br />
-                  +91- 7995191118
-                </p>
-                <p className="text-xl text-slate-700">
-                  <span className="font-semibold text-2xl">Instagram:</span><br />
-                  studio.traumhaus
-                </p>
+          <div className="mt-16 max-w-xl mx-auto">
+            <form className="space-y-8">
+              <div>
+                <label htmlFor="name" className="block text-lg font-medium text-gray-700">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 p-3"
+                  placeholder="Your name"
+                />
               </div>
-            </div>
-          </div>
 
-          <div className="mt-16">
-            <div className="rounded-2xl border border-slate-200 p-12 bg-gradient-to-br from-blue-50 via-[#F5F5DC] to-[#D2B48C] text-center animate-[fadeIn_1s_ease-in]">
-              <h3 className="font-display text-3xl font-bold text-slate-900 mb-8">
-                Our Location
-              </h3>
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823277!2d72.74109995!3d19.08219865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1689611696897!5m2!1sen!2sin"
-                width="100%" 
-                height="450" 
-                style={{border: 0}}
-                allowFullScreen="" 
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
+              <div>
+                <label htmlFor="email" className="block text-lg font-medium text-gray-700">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 p-3"
+                  placeholder="you@example.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="subject" className="block text-lg font-medium text-gray-700">Subject</label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 p-3"
+                  placeholder="What is this about?"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-lg font-medium text-gray-700">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={6}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 p-3"
+                  placeholder="Tell us what you need help with..."
+                />
+              </div>
+
+              <div className="text-center">
+                <button
+                  type="submit"
+                  className="inline-flex justify-center rounded-md border border-transparent bg-purple-600 py-3 px-6 text-lg font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-300"
+                >
+                  Send Message
+                </button>
+              </div>
+            </form>
           </div>
         </Container>
       </main>

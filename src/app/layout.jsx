@@ -5,11 +5,11 @@ import '@/styles/tailwind.css'
 
 export const metadata = {
   title: {
-    template: '%s - Hashtag Designs',
-    default: 'Hashtag Designs - Transform Your Space with Elegant Interior Design',
+    template: '%s - Coast Finder',
+    default: 'Coast Finder - Discover Your Perfect Beach Getaway',
   },
   description:
-    'Create stunning interiors that reflect your personality with our expert designers and premium quality materials. We bring your vision to life through innovative architectural and interior design solutions.',
+    'Find your ideal beach destination with Coast Finder. Explore beautiful beaches, discover water activities, and plan the perfect coastal vacation with our comprehensive beach guide.',
 }
 
 const inter = Inter({

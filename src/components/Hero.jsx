@@ -42,31 +42,23 @@ export function Hero() {
             src={image}
             alt={`Indian Beach Activities ${index + 1}`}
             fill
-            className="object-cover opacity-75"
+            className="object-cover opacity-40" // Changed opacity from 75 to 40 for more transparency
             priority={index === 0}
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white opacity-80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white opacity-90"></div>
         </div>
       ))}
       <Container className="relative px-4 sm:px-6 pb-12 sm:pb-16 md:pb-20 lg:pb-28 pt-12 sm:pt-16 md:pt-20 lg:pt-24 text-center">
-        <h1 className="mx-auto max-w-5xl font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white font-['Playfair_Display'] leading-tight">
-          <span className="text-gradient bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 inline-block text-transparent bg-clip-text">Coast-Finder</span>
+        <h1 className="mx-auto max-w-5xl font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 font-['Playfair_Display'] leading-tight">
+          <span className="text-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 inline-block text-transparent bg-clip-text">Coast-Finder</span>
           <br className="hidden sm:block" />
-          <span className="relative whitespace-normal text-cyan-400 mt-2 block">
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 418 42"
-              className="absolute left-0 top-2/3 h-[0.58em] w-full fill-cyan-300/70"
-              preserveAspectRatio="none"
-            >
-              <path d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z" />
-            </svg>
-            <span className="relative">Explore India's Best Beaches</span>
+          <span className="relative whitespace-normal text-slate-900 mt-2 block">
+            <span className="relative">Explore India&apos;s Best Beaches</span>
           </span>
         </h1>
         <p className="mx-auto mt-4 sm:mt-5 md:mt-6 max-w-2xl text-sm sm:text-base md:text-lg tracking-tight text-slate-900 leading-relaxed font-bold font-['Roboto'] antialiased px-4 drop-shadow-lg">
-          From serene beaches to vibrant nightlife, discover the perfect coastal getaway in India's most beautiful beach destinations.
+          From serene beaches to vibrant nightlife, discover the perfect coastal getaway in India&apos;s most beautiful beach destinations.
         </p>
         <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row justify-center gap-4 sm:gap-x-6 px-4">
           <Button 

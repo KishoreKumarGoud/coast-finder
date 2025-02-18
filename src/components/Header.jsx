@@ -125,8 +125,8 @@ export function Header({ navItems }) {
           <div className="flex items-center">
             <Link href="/" aria-label="Home">
               <div className="flex flex-col">
-                <span className="text-2xl font-bold text-blue-800">Coast Finder</span>
-                <span className="text-sm text-blue-600 font-light">Discover Your Perfect Beach Getaway</span>
+                <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Coast Finder</span>
+                <span className="text-sm text-cyan-600 font-medium tracking-wide">Discover Your Perfect Beach Getaway</span>
               </div>
             </Link>
           </div>
