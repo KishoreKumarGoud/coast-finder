@@ -17,12 +17,11 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
-import CoursesMenu from './CoursesMenu'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 function MobileNavLink({ href, children }) {
   return (
-    <PopoverButton as={Link} href={href} className="block w-full p-2 text-gray-800">
+    <PopoverButton as={Link} href={href} className="block w-full p-2 text-blue-800">
       {children}
     </PopoverButton>
   )
@@ -32,7 +31,7 @@ function MobileNavIcon({ open }) {
   return (
     <svg
       aria-hidden="true"
-      className="h-3.5 w-3.5 overflow-visible stroke-gray-800"
+      className="h-3.5 w-3.5 overflow-visible stroke-blue-800"
       fill="none"
       strokeWidth={2}
       strokeLinecap="round"
@@ -70,46 +69,46 @@ function MobileNavigation({navItems}) {
       />
       <PopoverPanel
         transition
-        className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-gray-50 p-4 text-lg tracking-tight text-gray-800 shadow-xl ring-1 ring-slate-900/5 data-[closed]:scale-95 data-[closed]:opacity-0 data-[enter]:duration-150 data-[leave]:duration-100 data-[enter]:ease-out data-[leave]:ease-in"
+        className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-blue-50 p-4 text-lg tracking-tight text-blue-800 shadow-xl ring-1 ring-slate-900/5 data-[closed]:scale-95 data-[closed]:opacity-0 data-[enter]:duration-150 data-[leave]:duration-100 data-[enter]:ease-out data-[leave]:ease-in"
       >
         <div className="relative">
           <Menu as="div" className="w-full">
-            <MenuButton className="block w-full p-2 text-left text-gray-800">
-              Our Works
-              <ChevronDownIcon className="inline-block ml-2 h-5 w-5 text-gray-400" />
+            <MenuButton className="block w-full p-2 text-left text-blue-800">
+              Beach Activities
+              <ChevronDownIcon className="inline-block ml-2 h-5 w-5 text-blue-400" />
             </MenuButton>
             <MenuItems className="absolute left-0 right-0 mt-1 w-full origin-top-right rounded-xl bg-white shadow-lg">
               <div className="py-2">
                 <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
-                    Interior Design
+                  <a href="#" className="block px-4 py-2 text-sm text-blue-700 hover:bg-blue-50 hover:text-blue-800">
+                    Surfing
                   </a>
                 </MenuItem>
                 <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
-                    Architecture
+                  <a href="#" className="block px-4 py-2 text-sm text-blue-700 hover:bg-blue-50 hover:text-blue-800">
+                    Snorkeling
                   </a>
                 </MenuItem>
                 <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
-                    Urban Planning
+                  <a href="#" className="block px-4 py-2 text-sm text-blue-700 hover:bg-blue-50 hover:text-blue-800">
+                    Beach Yoga
                   </a>
                 </MenuItem>
                 <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
-                    Commercial Spaces
+                  <a href="#" className="block px-4 py-2 text-sm text-blue-700 hover:bg-blue-50 hover:text-blue-800">
+                    Beach Volleyball
                   </a>
                 </MenuItem>
                 <MenuItem>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
-                    Residential Spaces
+                  <a href="#" className="block px-4 py-2 text-sm text-blue-700 hover:bg-blue-50 hover:text-blue-800">
+                    Sunset Cruises
                   </a>
                 </MenuItem>
               </div>
             </MenuItems>
           </Menu>
         </div>
-        {navItems.map((item) => {
+        {navItems.filter(item => item.label !== 'Our Works').map((item) => {
           return <NavLink href={item.link} key={item.label}>
             {item.label}</NavLink>
         })}
@@ -120,18 +119,20 @@ function MobileNavigation({navItems}) {
 
 export function Header({ navItems }) {
   return (
-    <header className="py-3 bg-gray-50 rounded-lg">
+    <header className="py-3 bg-blue-50 rounded-lg">
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center">
             <Link href="/" aria-label="Home">
-              <Logo className="h-10 w-auto text-gray-800" />
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold text-blue-800">Coast Finder</span>
+                <span className="text-sm text-blue-600 font-light">Discover Your Perfect Beach Getaway</span>
+              </div>
             </Link>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
-            <div className="hidden md:flex md:gap-x-6 md:items-center text-gray-800">
-              <CoursesMenu />
-              {navItems.map((item) => {
+            <div className="hidden md:flex md:gap-x-6 md:items-center text-blue-800">
+              {navItems.filter(item => item.label !== 'Our Works').map((item) => {
                 return <NavLink href={item.link} key={item.label}>
                   {item.label}</NavLink>
               })}

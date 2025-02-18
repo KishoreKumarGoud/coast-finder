@@ -2,64 +2,124 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
+import { useRouter } from 'next/navigation'
 
 import { Container } from '@/components/Container'
 import backgroundImage from '@/images/background-features.jpg'
+//import indiaMapOutline from '@/images/screenshots/india-outline.png'
 
-const features = [
+const beachStates = [
   {
-    title: 'Modern Living Rooms',
-    description:
-      "Transform your living space into a contemporary haven with premium materials and innovative layouts.",
-    image: "https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80",
+    name: 'Goa',
+    description: 'Famous for its vibrant beaches and nightlife',
+    coordinates: { x: 35, y: 55 },
+    region: 'West India',
+    highlights: ['Calangute Beach', 'Baga Beach', 'Anjuna Beach'],
+    beaches: [
+      {
+        name: 'Calangute Beach',
+        description: 'Known as the Queen of Beaches, Calangute is the largest beach in North Goa. Perfect for swimming and sunbathing, it offers various water sports activities.',
+        image: '/beaches/calangute.jpg'
+      },
+      {
+        name: 'Baga Beach',
+        description: 'Famous for its nightlife and water sports, Baga Beach is one of the most popular beaches in Goa. It\'s known for parasailing and jet skiing.',
+        image: '/beaches/baga.jpg'
+      },
+      {
+        name: 'Anjuna Beach',
+        description: 'Popular for its Wednesday flea market and trance parties, Anjuna Beach features unique rock formations and clear waters.',
+        image: '/beaches/anjuna.jpg'
+      }
+    ]
   },
   {
-    title: 'Luxury Kitchens', 
-    description:
-      "Create your dream kitchen with high-end appliances, custom cabinetry, and stunning finishes.",
-    image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1568&q=80",
+    name: 'Kerala',
+    description: 'Known for serene backwaters and pristine beaches',
+    coordinates: { x: 40, y: 85 },
+    region: 'South India',
+    highlights: ['Varkala Beach', 'Kovalam Beach', 'Marari Beach']
   },
   {
-    title: 'Serene Bedrooms',
-    description:
-      "Design your perfect sanctuary with peaceful retreats focused on comfort and style.",
-    image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    name: 'Maharashtra', 
+    description: 'Home to beautiful Konkan coast beaches',
+    coordinates: { x: 35, y: 45 },
+    region: 'West India',
+    highlights: ['Alibaug Beach', 'Ganpatipule Beach', 'Tarkarli Beach']
+  },
+  {
+    name: 'Tamil Nadu',
+    description: 'Features historic coastal temples and beaches',
+    coordinates: { x: 45, y: 80 },
+    region: 'South India',
+    highlights: ['Marina Beach', 'Mahabalipuram Beach', 'Rameshwaram Beach']
+  },
+  {
+    name: 'Andaman & Nicobar',
+    description: 'Tropical paradise with crystal clear waters',
+    coordinates: { x: 80, y: 75 },
+    region: 'East India',
+    highlights: ['Radhanagar Beach', 'Elephant Beach', 'Neil Island Beach']
+  },
+  {
+    name: 'Gujarat',
+    description: 'Home to unique white desert beaches and coastal sanctuaries',
+    coordinates: { x: 20, y: 40 },
+    region: 'North India',
+    highlights: ['Mandvi Beach', 'Diu Beach', 'Dwarka Beach']
+  },
+  {
+    name: 'Odisha',
+    description: 'Features pristine beaches and ancient temples',
+    coordinates: { x: 65, y: 55 },
+    region: 'East India',
+    highlights: ['Puri Beach', 'Chandipur Beach', 'Gopalpur Beach']
+  },
+  {
+    name: 'West Bengal',
+    description: 'Known for its mangrove beaches and delta regions',
+    coordinates: { x: 70, y: 45 },
+    region: 'East India',
+    highlights: ['Digha Beach', 'Mandarmani Beach', 'Bakkhali Beach']
   }
 ]
 
 export function PrimaryFeatures() {
-  let [tabOrientation, setTabOrientation] = useState('horizontal')
-  let [activeIndex, setActiveIndex] = useState(0)
+  const router = useRouter()
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedState, setSelectedState] = useState(null)
+  const [filteredStates, setFilteredStates] = useState([])
+  const [selectedRegion, setSelectedRegion] = useState(null)
 
   useEffect(() => {
-    let lgMediaQuery = window.matchMedia('(min-width: 1024px)')
-
-    function onMediaQueryChange({ matches }) {
-      setTabOrientation(matches ? 'vertical' : 'horizontal')
+    if (searchTerm) {
+      const filtered = beachStates.filter(state => 
+        state.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      setFilteredStates(filtered)
+    } else {
+      setFilteredStates([])
     }
+  }, [searchTerm])
 
-    onMediaQueryChange(lgMediaQuery)
-    lgMediaQuery.addEventListener('change', onMediaQueryChange)
+  const handleStateSelect = (state) => {
+    const stateSlug = state.name.toLowerCase().replace(/\s+/g, '-')
+    router.push(`/beaches/${stateSlug}`)
+  }
 
-    return () => {
-      lgMediaQuery.removeEventListener('change', onMediaQueryChange)
+  const handleSearchSubmit = (e) => {
+    e.preventDefault()
+    if (filteredStates.length > 0) {
+      handleStateSelect(filteredStates[0])
     }
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % features.length)
-    }, 3000) // Increased interval for better mobile UX
-
-    return () => clearInterval(interval)
-  }, [])
+  }
 
   return (
     <section
-      id="projects"
-      aria-label="Our Recent Projects"
+      id="beach-finder"
+      aria-label="Beach Finder"
       className="relative overflow-hidden bg-gray-900 pb-12 pt-8 sm:pb-20 sm:pt-12"
     >
       <Image
@@ -73,86 +133,142 @@ export function PrimaryFeatures() {
       <Container className="relative">
         <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-16 px-4">
           <h2 className="font-display text-3xl sm:text-4xl md:text-6xl tracking-tight text-white font-bold mb-3 sm:mb-4">
-            Our Recent Projects
+            Find Your Perfect Beach
           </h2>
-          <p className="mt-2 sm:mt-3 text-base sm:text-lg tracking-tight text-gray-300">
-            Explore our portfolio of stunning interior transformations.
+          <p className="mt-2 sm:mt-3 text-base sm:text-lg tracking-tight text-orange-600 font-extrabold font-['Righteous']">
+            Discover beaches across Indian states
           </p>
         </div>
-        <TabGroup
-          className="mt-6 grid grid-cols-1 items-center gap-y-2 pt-4 sm:gap-y-6 md:mt-12 lg:grid-cols-12 lg:pt-0"
-          vertical={tabOrientation === 'vertical'}
-          selectedIndex={activeIndex}
-          onChange={setActiveIndex}
-        >
-          {({ selectedIndex }) => (
-            <>
-              <div className="px-4 flex overflow-x-auto pb-4 sm:mx-0 sm:overflow-visible sm:pb-0 lg:col-span-4 lg:px-0">
-                <TabList className="relative z-10 flex gap-x-3 sm:gap-x-4 whitespace-nowrap px-0 sm:mx-auto sm:px-0 lg:mx-0 lg:block lg:gap-x-0 lg:gap-y-1 lg:whitespace-normal">
-                  {features.map((feature, featureIndex) => (
-                    <div
-                      key={feature.title}
-                      className={clsx(
-                        'group relative rounded-full px-2 py-1 sm:px-3 lg:rounded-l-xl lg:rounded-r-none lg:p-5 transition-all duration-200 lg:-ml-8',
-                        selectedIndex === featureIndex
-                          ? 'bg-white lg:bg-white/10 lg:ring-1 lg:ring-inset lg:ring-white/10'
-                          : 'hover:bg-white/10 lg:hover:bg-white/5',
-                        activeIndex === featureIndex && 'scale-105'
-                      )}
+
+        {/* Region Filter */}
+        <div className="max-w-xl mx-auto px-4 mb-6">
+          <div className="flex justify-center flex-wrap gap-4">
+            {['North India', 'West India', 'South India', 'East India'].map((region) => (
+              <button
+                key={region}
+                className={clsx(
+                  'px-4 py-2 rounded-full transition-colors',
+                  selectedRegion === region 
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-white/10 text-white hover:bg-orange-500/50'
+                )}
+                onClick={() => setSelectedRegion(region === selectedRegion ? null : region)}
+              >
+                {region}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Search Box */}
+        <div className="max-w-xl mx-auto px-4 mb-12">
+          <form onSubmit={handleSearchSubmit}>
+            <div className="relative">
+              <input
+                type="text"
+                className="w-full px-4 py-3 pl-12 rounded-xl bg-white/10 text-white placeholder-gray-400 border border-white/20 focus:outline-none focus:border-orange-500 transition-colors"
+                placeholder="Search state names here..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <MagnifyingGlassIcon className="absolute left-4 top-3.5 h-5 w-5 text-gray-400" />
+              
+              {/* Search Results Dropdown */}
+              {filteredStates.length > 0 && (
+                <div className="absolute w-full mt-2 bg-white/95 rounded-xl shadow-lg overflow-hidden">
+                  {filteredStates.map((state) => (
+                    <button
+                      key={state.name}
+                      className="w-full px-4 py-2 text-left hover:bg-orange-100 transition-colors"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        handleStateSelect(state)
+                      }}
                     >
-                      <h3>
-                        <Tab
-                          className={clsx(
-                            'font-display text-lg sm:text-xl ui-not-focus-visible:outline-none transition-colors duration-200',
-                            selectedIndex === featureIndex
-                              ? 'text-gray-900 lg:text-white'
-                              : activeIndex === featureIndex
-                              ? 'text-indigo-400'
-                              : 'text-gray-300 hover:text-white lg:text-white',
-                          )}
-                        >
-                          <span className="absolute inset-0 rounded-full lg:rounded-l-xl lg:rounded-r-none" />
-                          {feature.title}
-                        </Tab>
-                      </h3>
-                      <p
-                        className={clsx(
-                          'mt-2 hidden text-sm lg:block transition-colors duration-200 max-w-md',
-                          selectedIndex === featureIndex
-                            ? 'text-white'
-                            : activeIndex === featureIndex
-                            ? 'text-indigo-300'
-                            : 'text-gray-300 group-hover:text-white',
-                        )}
-                      >
-                        {feature.description}
-                      </p>
-                    </div>
+                      <span className="text-gray-900 font-medium">{state.name}</span>
+                      <span className="text-gray-500 text-sm ml-2">({state.region})</span>
+                    </button>
                   ))}
-                </TabList>
-              </div>
-              <TabPanels className="lg:col-span-8 px-4 sm:px-0">
-                {features.map((feature) => (
-                  <TabPanel key={feature.title} unmount={false}>
-                    <div className="relative sm:px-6 lg:hidden">
-                      <div className="absolute -inset-x-4 -top-4 bottom-[-4.25rem] bg-white/10 ring-1 ring-inset ring-white/10 sm:inset-x-0 sm:rounded-t-xl" />
-                      <p className="relative mx-auto max-w-2xl text-sm sm:text-base text-white sm:text-center px-4 py-4">
-                        {feature.description}
-                      </p>
-                    </div>
-                    <div className="mt-6 sm:mt-8 w-full overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-black/20">
-                      <img
-                        className="w-full h-[280px] sm:h-[380px] lg:h-[480px] object-cover"
-                        src={feature.image}
-                        alt={feature.title}
-                      />
-                    </div>
-                  </TabPanel>
-                ))}
-              </TabPanels>
-            </>
-          )}
-        </TabGroup>
+                </div>
+              )}
+            </div>
+          </form>
+        </div>
+
+        {/* Interactive Map */}
+        <div className="relative w-full max-w-2xl mx-auto aspect-[4/3] bg-white/10 rounded-2xl overflow-hidden">
+          <div className="absolute inset-0 p-4">
+          {/* India Map Outline */}
+            <Image
+             // src={indiaMapOutline}
+              alt="India Map"
+              fill
+              className="opacity-70 object-contain"
+              priority
+            />
+
+            <div className="relative w-full h-full">
+              {beachStates
+                .filter(state => !selectedRegion || state.region === selectedRegion)
+                .map((state) => (
+                <div
+                  key={state.name}
+                  className={clsx(
+                    'absolute w-4 h-4 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 cursor-pointer',
+                    selectedState?.name === state.name
+                      ? 'bg-orange-500 scale-150'
+                      : state.region === 'North India' ? 'bg-red-400 hover:bg-red-500 hover:scale-125'
+                      : state.region === 'South India' ? 'bg-green-400 hover:bg-green-500 hover:scale-125'
+                      : state.region === 'East India' ? 'bg-yellow-400 hover:bg-yellow-500 hover:scale-125'
+                      : 'bg-blue-400 hover:bg-blue-500 hover:scale-125',
+                    selectedRegion && state.region !== selectedRegion && 'opacity-30'
+                  )}
+                  style={{
+                    left: `${state.coordinates.x}%`,
+                    top: `${state.coordinates.y}%`
+                  }}
+                  onClick={() => handleStateSelect(state)}
+                >
+                  <span className="absolute top-5 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-white text-sm font-medium">
+                    {state.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Selected State Info */}
+        {selectedState && (
+          <div className="mt-8 p-6 bg-white/10 rounded-xl">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-2xl font-bold text-white">{selectedState.name}</h3>
+              <span className={clsx(
+                'px-3 py-1 rounded-full text-sm',
+                selectedState.region === 'North India' ? 'bg-red-500/20 text-red-300'
+                : selectedState.region === 'South India' ? 'bg-green-500/20 text-green-300'
+                : selectedState.region === 'East India' ? 'bg-yellow-500/20 text-yellow-300'
+                : 'bg-blue-500/20 text-blue-300'
+              )}>
+                {selectedState.region}
+              </span>
+            </div>
+            <p className="text-gray-300 mb-4">{selectedState.description}</p>
+            <div className="flex flex-wrap gap-2">
+              {selectedState.highlights.map((beach, index) => (
+                <span key={index} className={clsx(
+                  'px-3 py-1 rounded-full text-sm',
+                  selectedState.region === 'North India' ? 'bg-red-500/20 text-red-300'
+                  : selectedState.region === 'South India' ? 'bg-green-500/20 text-green-300'
+                  : selectedState.region === 'East India' ? 'bg-yellow-500/20 text-yellow-300'
+                  : 'bg-blue-500/20 text-blue-300'
+                )}>
+                  {beach}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
       </Container>
     </section>
   )

@@ -8,10 +8,7 @@ import Team from '@/components/Team'
 
 export default function Home() {
   const navItems = [
-    {
-      "link": "#testimonials",
-      "label": "Testimonials"
-    },
+   
     {
       "link": "/about",
       "label": "About"
