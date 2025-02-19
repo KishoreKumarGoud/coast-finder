@@ -242,25 +242,24 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { images } from '../../../../../next.config';
 
 export default function BeachInfoPage({ params }) {
   const { state, beach } = params;
 
   // Find state data
   const stateData = beachStates.find(s => s.name.toLowerCase().replace(/\s+/g, '') === state.toLowerCase());
-  if (!stateData) return notFound();
 
   // Find beach data
-  const beachData = stateData.beaches.find(b => b.name.toLowerCase().replace(/\s+/g, "-") === beach);
-  if (!beachData) return notFound();
+  const beachData = stateData?.beaches.find(b => b.name.toLowerCase().replace(/\s+/g, "-") === beach);
 
-  // State for nearby places & weather
+  // State hooks (must be before any return)
   const [places, setPlaces] = useState(null);
   const [weather, setWeather] = useState(null);
 
   // Fetch Nearby Places & Weather
   useEffect(() => {
+    if (!beachData) return; // Prevent fetching if no beachData exists
+
     async function fetchPlaces() {
       try {
         const response = await fetch(`/api/nearby-places?lat=${beachData.lat}&lon=${beachData.lon}`);
@@ -285,7 +284,10 @@ export default function BeachInfoPage({ params }) {
 
     fetchPlaces();
     fetchWeather();
-  }, [beachData.lat, beachData.lon]);
+  }, [beachData?.lat, beachData?.lon]); // Run only if beachData exists
+
+  // Handle invalid state or beach after hooks
+  if (!stateData || !beachData) return notFound();
 
   return (
     <>
@@ -300,7 +302,13 @@ export default function BeachInfoPage({ params }) {
 
             {/* Beach Image */}
             <div className="flex justify-center mb-8">
-              <Image src={beachData.image} alt={beachData.name} width={600} height={400} className="rounded-lg shadow-lg" />
+              <Image
+                src={beachData.image}
+                alt={beachData.name}
+                width={600}
+                height={400}
+                className="rounded-lg shadow-lg"
+              />
             </div>
 
             {/* Weather Info */}
@@ -328,7 +336,7 @@ export default function BeachInfoPage({ params }) {
                 width="600"
                 height="400"
                 style={{ border: 0 }}
-                allowFullScreen=""
+                allowFullScreen
                 loading="lazy"
                 className="rounded-lg shadow-lg"
               ></iframe>
@@ -354,13 +362,13 @@ export default function BeachInfoPage({ params }) {
                         autoplay={{ delay: 2000 }}
                         className="h-48"
                       >
-                         {place.images.map((image, imgIndex) => (
-    <SwiperSlide key={imgIndex}>
-      <div
-        className="h-48 bg-cover bg-center"
-        style={{ backgroundImage: `url(${image})` }}
-      ></div>
-    </SwiperSlide>
+                        {place.images.map((image, imgIndex) => (
+                          <SwiperSlide key={imgIndex}>
+                            <div
+                              className="h-48 bg-cover bg-center"
+                              style={{ backgroundImage: `url(${image})` }}
+                            ></div>
+                          </SwiperSlide>
                         ))}
                       </Swiper>
                       <div className="p-4 bg-white text-center">

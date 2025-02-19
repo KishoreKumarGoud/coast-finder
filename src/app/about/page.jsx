@@ -25,7 +25,7 @@ export default function About() {
               About Coast-Finder
             </h2>
             <p className="mt-6 text-2xl tracking-tight text-slate-700 font-semibold">
-              Your Ultimate Guide to India's Beautiful Beaches
+              Your Ultimate Guide to Indias Beautiful Beaches
             </p>
           </div>
 
@@ -46,7 +46,7 @@ export default function About() {
                 What We Offer
               </h3>
               <ul className="space-y-4 text-xl text-slate-700">
-                <li>• Detailed guides to India's coastal states</li>
+                <li>• Detailed guides to Indias coastal states</li>
                 <li>• Curated beach recommendations</li>
                 <li>• Local insights and travel tips</li>
                 <li>• Regional beach activity suggestions</li>
@@ -60,7 +60,7 @@ export default function About() {
               </h3>
               <p className="text-xl text-slate-700 leading-relaxed">
                 We envision becoming the most trusted resource for beach tourism in India, promoting responsible 
-                travel while showcasing the incredible diversity of India's coastline. Our platform aims to 
+                travel while showcasing the incredible diversity of Indias coastline. Our platform aims to 
                 connect travelers with the perfect coastal destinations while promoting sustainable tourism 
                 practices.
               </p>
