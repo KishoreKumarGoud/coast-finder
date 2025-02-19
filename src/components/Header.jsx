@@ -54,7 +54,7 @@ function MobileNavIcon({ open }) {
   )
 }
 
-function MobileNavigation({navItems}) {
+function MobileNavigation({ navItems }) {
   return (
     <Popover>
       <PopoverButton
@@ -108,10 +108,11 @@ function MobileNavigation({navItems}) {
             </MenuItems>
           </Menu>
         </div>
-        {navItems.filter(item => item.label !== 'Our Works').map((item) => {
-          return <NavLink href={item.link} key={item.label}>
-            {item.label}</NavLink>
-        })}
+        {navItems?.map((item) => (
+  <NavLink href={item.link} key={item.label}>{item.label}</NavLink>
+))}
+
+        <NavLink href="/login" className="mt-4 block w-full text-center bg-blue-600 text-white rounded-lg py-2">Login</NavLink>
       </PopoverPanel>
     </Popover>
   )
@@ -132,13 +133,14 @@ export function Header({ navItems }) {
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
             <div className="hidden md:flex md:gap-x-6 md:items-center text-blue-800">
-              {navItems.filter(item => item.label !== 'Our Works').map((item) => {
-                return <NavLink href={item.link} key={item.label}>
-                  {item.label}</NavLink>
-              })}
+            {navItems?.map((item) => (
+  <NavLink href={item.link} key={item.label}>{item.label}</NavLink>
+))}
+
+              <Link href="/login" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Login</Link>
             </div>
             <div className="-mr-1 md:hidden">
-              <MobileNavigation navItems={navItems}/>
+              <MobileNavigation navItems={navItems} />
             </div>
           </div>
         </nav>
