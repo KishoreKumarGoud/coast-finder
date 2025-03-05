@@ -24,7 +24,7 @@ export default function StateBeachesPage({ params }) {
         <Container>
           <h1 className="text-5xl font-bold text-blue-900 text-center mb-8">{stateData.name} Beaches</h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
             {stateData.beaches.map((beach, index) => (
               <Link key={index} href={`/beaches/${state}/${beach.name.toLowerCase().replace(/\s+/g, '-')}`}>
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden transition transform hover:scale-105 cursor-pointer">
@@ -36,7 +36,36 @@ export default function StateBeachesPage({ params }) {
                 </div>
               </Link>
             ))}
+          </div> */}
+        <div className="flex justify-center">
+  <div
+    className={`grid gap-6 ${
+      stateData.beaches.length === 1 ? "grid-cols-1 justify-items-center" : 
+      stateData.beaches.length === 2 ? "grid-cols-2" : 
+      "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+    }`}
+  >
+    {stateData.beaches.map((beach, index) => (
+      <Link key={index} href={`/beaches/${state}/${beach.name.toLowerCase().replace(/\s+/g, '-')}`} className="flex justify-center">
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden transition transform hover:scale-105 cursor-pointer w-[320px]">
+          <Image 
+            src={beach.image} 
+            alt={beach.name} 
+            width={400} 
+            height={250} 
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-4 text-center">
+            <h2 className="text-xl font-bold text-blue-900">{beach.name}</h2>
+            <p className="text-gray-700">{beach.description}</p>
           </div>
+        </div>
+      </Link>
+    ))}
+  </div>
+</div>
+
+
         </Container>
       </main>
       <Footer />
