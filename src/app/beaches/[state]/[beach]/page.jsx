@@ -15,7 +15,6 @@ export default function BeachInfoPage() {
   const stateData = beachStates.find(s => s.name.toLowerCase().replace(/\s+/g, '') === state.toLowerCase());
   const beachData = stateData?.beaches.find(b => b.name.toLowerCase().replace(/\s+/g, '-') === beach);
 
-  const [weather, setWeather] = useState(null);
   const [restaurants, setRestaurants] = useState([]);
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,24 +29,7 @@ export default function BeachInfoPage() {
 
   const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
-  // ✅ Fetch Weather
-  useEffect(() => {
-    if (beachData?.latitude && beachData?.longitude) {
-      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${beachData.latitude}&longitude=${beachData.longitude}&current_weather=true`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.current_weather) {
-            setWeather({
-              temperature: data.current_weather.temperature,
-              windSpeed: data.current_weather.windspeed,
-            });
-          }
-        })
-        .catch(() => setError('Failed to load weather data'));
-    }
-  }, [beachData]);
-
-  // ✅ Fetch Nearby Hotels and Restaurants
+  // ✅ Fetch Hotels & Restaurants
   useEffect(() => {
     const fetchPlaces = async (type, setter) => {
       if (beachData?.latitude && beachData?.longitude) {
@@ -60,14 +42,14 @@ export default function BeachInfoPage() {
           if (data.results) {
             const places = data.results.map(place => ({
               name: place.name || 'Unnamed Place',
-              rating: place.rating || 'N/A',
+              rating: place.rating || 0,
               address: place.vicinity || 'No address available',
               mapUrl: `https://www.google.com/maps/search/?api=1&query=${place.geometry.location.lat},${place.geometry.location.lng}`,
               image: place.photos
                 ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${GOOGLE_API_KEY}`
                 : '/placeholder.jpg',
-              price: Math.floor(Math.random() * 9000) + 1000,  // Simulated price
-              distance: (Math.random() * 30).toFixed(2)        // Simulated distance
+              price: Math.floor(Math.random() * 9000) + 1000,
+              distance: (Math.random() * 30).toFixed(2)
             }));
 
             setter(places);
@@ -86,37 +68,33 @@ export default function BeachInfoPage() {
     setLoading(true);
     fetchPlaces('lodging', setHotels);
     fetchPlaces('restaurant', setRestaurants);
-
   }, [beachData, GOOGLE_API_KEY]);
 
   if (!stateData || !beachData) return notFound();
 
   // ✅ Sorting Function
-  const handleSort = (a, b) => {
-    if (sortBy === 'price-low') return a.price - b.price;
-    if (sortBy === 'price-high') return b.price - a.price;
-    if (sortBy === 'rating-low') return a.rating - b.rating;
-    if (sortBy === 'rating-high') return b.rating - a.rating;
-    if (sortBy === 'distance-near') return a.distance - b.distance;
-    if (sortBy === 'distance-far') return b.distance - a.distance;
-    return 0;
+  const handleSort = (places) => {
+    if (sortBy === 'price-low') return [...places].sort((a, b) => a.price - b.price);
+    if (sortBy === 'price-high') return [...places].sort((a, b) => b.price - a.price);
+    if (sortBy === 'rating-high') return [...places].sort((a, b) => b.rating - a.rating);
+    if (sortBy === 'distance-near') return [...places].sort((a, b) => a.distance - b.distance);
+    return places;
   };
 
   // ✅ Filtering Logic
-  const handleFilter = place => {
-    if (filterBy === 'low-price') return place.price < 2000;
-    if (filterBy === 'high-rating') return place.rating >= 4;
-    if (filterBy === 'nearby') return place.distance < 10;
-    return true;
+  const handleFilter = (places) => {
+    let filtered = places;
+
+    if (filterBy === 'low-price') filtered = filtered.filter(place => place.price < 2000);
+    if (filterBy === 'high-rating') filtered = filtered.filter(place => place.rating >= 4);
+    if (filterBy === 'nearby') filtered = filtered.filter(place => place.distance < 10);
+
+    return filtered.filter(place => place.price >= priceRange[0] && place.price <= priceRange[1]);
   };
 
-  const filteredHotels = hotels.filter(handleFilter).filter(place => (
-    place.price >= priceRange[0] && place.price <= priceRange[1]
-  )).sort(handleSort);
-
-  const filteredRestaurants = restaurants.filter(handleFilter).filter(place => (
-    place.price >= priceRange[0] && place.price <= priceRange[1]
-  )).sort(handleSort);
+  // ✅ Process Filters & Sorting
+  const processedHotels = handleSort(handleFilter(hotels));
+  const processedRestaurants = handleSort(handleFilter(restaurants));
 
   // ✅ Handle Travel Search
   const handleTravelSearch = () => {
@@ -124,10 +102,10 @@ export default function BeachInfoPage() {
       alert('Please enter a starting point.');
       return;
     }
-  
+
     const destination = beachData.name;
     let url = '';
-  
+
     if (travelType === 'flights') {
       url = `https://www.google.com/travel/flights?q=flights+from+${startPoint}+to+${destination}`;
     } else if (travelType === 'trains') {
@@ -135,7 +113,7 @@ export default function BeachInfoPage() {
     } else if (travelType === 'buses') {
       url = `https://www.redbus.in/search?from=${startPoint}&to=${destination}`;
     }
-  
+
     window.open(url, '_blank');
   };
 
@@ -145,49 +123,41 @@ export default function BeachInfoPage() {
       <main className="bg-blue-50 py-12">
         <Container>
 
-          {/* ✅ Weather Section */}
-          {weather && (
-            <div className="bg-white p-4 rounded-lg shadow-md mb-6">
-              <h3 className="text-2xl font-bold">🌤️ Current Weather</h3>
-              <p>Temperature: {weather.temperature}°C</p>
-              <p>Wind Speed: {weather.windSpeed} km/h</p>
-            </div>
-          )}
-
-          {/* ✅ Beach Info Card */}
-          <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-            <h1 className="text-4xl font-bold">{beachData.name}</h1>
-            <p className="text-gray-700">{beachData.description}</p>
-          </div>
-
-          {/* ✅ Travel Section */}
+          {/* ✅ Plan Your Travel & Sorting */}
           <div className="bg-white p-4 rounded-lg shadow-md mb-6">
             <h3 className="text-2xl font-bold">🚆 Plan Your Travel</h3>
-            <div className="flex gap-4 mt-4">
-              <input 
-                type="text" 
-                placeholder="Enter Starting Point" 
-                value={startPoint} 
-                onChange={e => setStartPoint(e.target.value)} 
-                className="p-2 border rounded w-1/2"
-              />
-              <select value={travelType} onChange={e => setTravelType(e.target.value)} className="p-2 border rounded">
+            <div className="flex flex-wrap gap-4 mt-4 items-center">
+              {/* Travel Inputs */}
+              <input type="text" placeholder="Enter Starting Point" value={startPoint} onChange={e => setStartPoint(e.target.value)} className="p-2 border rounded w-1/3"/>
+              <select value={travelType} onChange={e => setTravelType(e.target.value)} className="p-2 border rounded w-1/3">
                 <option value="flights">Flights</option>
                 <option value="trains">Trains</option>
+                <option value="buses">Buses</option>
               </select>
-              <button 
-                onClick={handleTravelSearch} 
-                className="bg-blue-500 text-white p-2 rounded"
-              >
-                Search
-              </button>
+              <button onClick={handleTravelSearch} className="bg-blue-500 text-white p-2 rounded">Search</button>
+
+              {/* Sorting & Filtering */}
+              <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="p-2 border rounded w-1/4">
+                <option value="">Sort By</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating-high">Rating: High to Low</option>
+                <option value="distance-near">Nearest First</option>
+              </select>
+
+              <select value={filterBy} onChange={(e) => setFilterBy(e.target.value)} className="p-2 border rounded w-1/4">
+                <option value="">Filter By</option>
+                <option value="low-price">Budget Friendly</option>
+                <option value="high-rating">High Rated (4+)</option>
+                <option value="nearby">Nearby (Within 10 km)</option>
+              </select>
             </div>
           </div>
 
           {/* ✅ Hotels Section */}
           <h2 className="text-3xl font-bold mt-10">🏨 Nearby Hotels</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredHotels.map((hotel, index) => (
+            {processedHotels.map((hotel, index) => (
               <div key={index} className="bg-white rounded-lg shadow-lg p-4 w-full">
                 <Image src={hotel.image} alt={hotel.name} width={400} height={250} className="rounded-t-lg object-cover h-64 w-full" />
                 <h3 className="text-xl font-bold">{hotel.name}</h3>
@@ -197,18 +167,6 @@ export default function BeachInfoPage() {
             ))}
           </div>
 
-          {/* ✅ Restaurants Section */}
-          <h2 className="text-3xl font-bold mt-10">🍽️ Nearby Restaurants</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredRestaurants.map((restaurant, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg p-4 w-full">
-                <Image src={restaurant.image} alt={restaurant.name} width={400} height={250} className="rounded-t-lg object-cover h-64 w-full" />
-                <h3 className="text-xl font-bold">{restaurant.name}</h3>
-                <p>⭐ {restaurant.rating} | 📍 {restaurant.distance} km away</p>
-                <p>💰 ₹{restaurant.price}</p>
-              </div>
-            ))}
-          </div>
         </Container>
       </main>
       <Footer />
