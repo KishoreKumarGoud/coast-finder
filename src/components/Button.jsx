@@ -1,6 +1,4 @@
-// Import Next.js Link component for navigation
-import Link from 'next/link'
-// Import clsx utility for conditional className joining
+import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 
 // Define base styles for button variants
@@ -62,6 +60,8 @@ export function Button({ className, ...props }) {
   return typeof props.href === 'undefined' ? (
     <button className={className} {...props} />
   ) : (
-    <Link className={className} {...props} />
+    <Link to={props.href} className={className}>
+      {props.children}
+    </Link>
   )
 }

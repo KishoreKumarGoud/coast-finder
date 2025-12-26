@@ -1,4 +1,3 @@
-'use client';
 
 import { beachStates } from '@/app/data/beachStates';
 import Image from 'next/image';
